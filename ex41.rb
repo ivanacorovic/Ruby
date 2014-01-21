@@ -19,9 +19,9 @@ open(WORD_URL) { |f|
 #puts WORDS
 snippet=["class ### < ###\nend",  "class ###\n\tdef initialize(@@@)\n\tend\nend",
         "class ###\n\tdef ***(@@@)\n\tend\nend"]
-for i in [snippet, PHRASES]
-  puts "#{i}\n" 
-end
+# for i in [snippet, PHRASES]
+#   puts "#{i}\n" 
+# end
 
 
 
@@ -30,7 +30,7 @@ def craft_names(rand_words, snippet, pattern, caps=false)
     word=rand_words.pop()
     caps ? word.capitalize : word    
   end
-  reutrn namess * 2
+  return names * 2
 end
 
 def craft_params (rand_words, snippet, pattern)
@@ -48,8 +48,38 @@ def convert (snippet, phrase)
   other_names=craft_names(rand_words, snippet, /\*\*\*/, )
   param_names=craft_names(rand_words, snippet, /@@@/)
 
-  result=[]
+  results=[]
+for sentence in [snippet, phrase]
+    #
+    result = sentence.gsub(/###/) {|x| class_names.pop }
 
-  #for sentence in [snippet, phrase]
-   end
+   
+    result.gsub!(/\*\*\*/) {|x| other_names.pop }
+
+    result.gsub!(/@@@/) {|x| param_names.pop }
+
+    results.push(result)
+  end
+
+  return results
+end 
+ 
+loop do
+  snippets = PHRASES.keys().sort_by {rand}
+
+  for snippet in snippets
+    phrase = PHRASES[snippet]
+    question, answer = convert(snippet, phrase)
+
+    if PHRASE_FIRST
+      question, answer = answer, question
+    end
+
+    print question, "\n\n> "
+
+    exit(0) unless STDIN.gets
+
+    puts "\nANSWER:  %s\n\n" % answer
+  end
+end
 
