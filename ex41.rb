@@ -14,8 +14,8 @@ PHRASE_FIRST=ARGV[0]=="english"
 
 open(WORD_URL) { |f|
   f.each_line { |word|  WORDS.push (word.chomp) 
- }  
-}
+ }    
+  }
 #puts WORDS
 snippet=["class ### < ###\nend",  "class ###\n\tdef initialize(@@@)\n\tend\nend",
         "class ###\n\tdef ***(@@@)\n\tend\nend"]
@@ -82,4 +82,5 @@ loop do
     puts "\nANSWER:  %s\n\n" % answer
   end
 end
+
 

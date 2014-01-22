@@ -14,4 +14,4 @@ puts persian_cat
 puts backslash_cat
 puts fat_cat
 
-puts 'I\'m 6\' 2" tall.'
+puts 'I'm 6\' 2" tall.'
