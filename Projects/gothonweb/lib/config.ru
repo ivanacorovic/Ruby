@@ -1,0 +1,2 @@
+require "./gothonweb"
+run Gothonweb
